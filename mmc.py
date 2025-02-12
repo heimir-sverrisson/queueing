@@ -35,3 +35,10 @@ class MMc:
                 self.service_rate * self.num_servers - self.arrival_rate)
             + 1 / self.service_rate
         )
+
+    def customers_in_system(self):
+        # Being served and waiting in queue
+        self._validate()
+        factor_1 = self.utilization / (1 - self.utilization)
+        return factor_1 * self.erlang_c + self.num_servers * self.utilization
+
